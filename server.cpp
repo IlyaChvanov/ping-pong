@@ -11,6 +11,10 @@
 #define FIFO_PATH "/tmp/pingpong_fifo"
 #define BUFFER_SIZE 1024
 
+// !!ДЛЯ ДИМЫ!!
+// Файл автоматически очищается при чтении данных, так что, когда будешь делать клиента, сразу считывай
+// и отправляй ping и ничего не очищай. Также все файлы открыты
+// !!ДЛЯ ДИМЫ!!
 int main() {
     char buffer[BUFFER_SIZE];
     if (!std::filesystem::exists(FIFO_PATH)) {
