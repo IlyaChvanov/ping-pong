@@ -47,7 +47,6 @@ int main() {
             int fifo_fd_write = open(FIFO_PATH, O_WRONLY);
             if (fifo_fd_write == -1) {
                 std::cerr << "Error while opening FIFO for writing" << std::endl;
-                close(fifo_fd);
                 exit(1);
             }
             const char *response = "pong";
@@ -56,14 +55,11 @@ int main() {
 
             if (bytes_written == -1) {
                 std::cerr << "Error while writing to FIFO" << std::endl;
-                close(fifo_fd);
-                close(fifo_fd_write);
                 exit(1);
             }
             std::cout << "Server Sent: \"" << response << "\"" << std::endl;
         } else {
             std::cerr << "Error: the message is not 'ping'" << std::endl;
-            close(fifo_fd);
         }
     }
     return 0;
